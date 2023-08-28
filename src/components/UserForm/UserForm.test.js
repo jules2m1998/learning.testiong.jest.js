@@ -27,6 +27,24 @@ describe("User from", () => {
     //Assert
     expect(mock).not.toHaveBeenCalled();
   });
+
+  test("empties the two inputs when form is submitted", () => {
+    render(<UserForm onAdd={() => {}} />);
+
+    const nameInput = screen.getByRole("textbox", { name: /name/i });
+    const emailInput = screen.getByRole("textbox", { name: /email/i });
+    const button = screen.getByRole("button");
+
+    user.click(nameInput);
+    user.keyboard("jules");
+    user.click(emailInput);
+    user.keyboard("jules@m.m");
+
+    user.click(button);
+
+    expect(nameInput).toHaveValue("");
+    expect(emailInput).toHaveValue("");
+  });
   test("it calls onUserAdd when the form is submitted with values", () => {
     // Arrange
     const mock = jest.fn();

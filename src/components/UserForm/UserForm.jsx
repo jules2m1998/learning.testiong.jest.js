@@ -7,6 +7,7 @@ export default function UserForm({ onAdd }) {
       const data = Object.fromEntries(new FormData(e.target));
       if (!data.name || !data.email) return;
       onAdd(data);
+      e.target.reset();
     },
     [onAdd]
   );

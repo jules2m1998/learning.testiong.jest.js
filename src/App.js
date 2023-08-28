@@ -10,6 +10,7 @@ function App() {
   return (
     <>
       <UserForm onAdd={handleAdd} />
+      <br />
       <UserList users={users} />
     </>
   );
