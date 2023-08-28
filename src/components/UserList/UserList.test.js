@@ -1,4 +1,4 @@
-import { render, screen } from "@testing-library/react";
+import { render, screen, within } from "@testing-library/react";
 import UserList from "./UserList";
 
 describe("UserList", () => {
@@ -15,11 +15,13 @@ describe("UserList", () => {
       },
     ];
 
-    render(<UserList users={users} />);
-    screen.logTestingPlaygroundURL(); // Testing playground
-
     // Act
+    const { container } = render(<UserList users={users} />);
+    // eslint-disable-next-line
+    const rows = container.querySelectorAll("tbody tr");
+
     // Assert
+    expect(rows).toHaveLength(2);
   });
   test("render the email and name of each user", () => {
     // Arrange
